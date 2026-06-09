@@ -27,6 +27,7 @@ We've reached a point where several modules need detailed specifications and UI/
 - How does the company approval workflow interact with company self-registration? (We currently have company registration and edit-approval flows in the notification center — should company management consolidate these?)
 
 **Design deliverables needed:**
+
 - Company management list view (search, filter, status indicators)
 - Company detail/overview screen from super admin perspective
 - Company edit form (if editing is in scope)
@@ -65,6 +66,7 @@ We've reached a point where several modules need detailed specifications and UI/
   - Should super admins have a global view of all transactions across companies?
 
 **Design deliverables needed:**
+
 - Payment checkout flow (Stripe Checkout redirect vs. embedded Stripe Elements — depends on product decision)
 - Payment failure/retry screens
 - Withdrawal request form and status tracker (company side, if withdrawals are in scope)
@@ -86,6 +88,7 @@ We've reached a point where several modules need detailed specifications and UI/
 - Are there any scheduling conflict rules that need enforcement at the platform level?
 
 **Design deliverables needed:**
+
 - Super admin schedule overview screen (cross-company view — if in scope)
 - Schedule override/intervention UI (if modification rights are granted)
 
@@ -103,6 +106,7 @@ We've reached a point where several modules need detailed specifications and UI/
 - Who can submit content reports — only super admins, or also partner companies viewing shared displays?
 
 **Design deliverables needed:**
+
 - If separate module: report queue list view, report detail screen, moderation action panel
 - If integrated into tickets: updated ticket creation form with "content report" category, reported content preview within ticket detail
 - Content report submission flow (for whoever is allowed to submit)
@@ -142,6 +146,7 @@ We've reached a point where several modules need detailed specifications and UI/
   - Is there a grace period?
 
 **Design deliverables needed:**
+
 - Offer management CRUD screens (super admin — create, edit, list, duplicate)
 - Offer targeting/filter builder UI (super admin)
 - Offer display on company side (we have promotional offer cards already — do they need redesign for new offer types?)
@@ -151,24 +156,36 @@ We've reached a point where several modules need detailed specifications and UI/
 
 ---
 
+## 6. Logging System — Activity & Audit Trail
+
+**What exists today:** there is no unified specification for what actions should be recorded for each module.
+
+**What we need a full specification for:**
+
+We need the product team to define, for each module, exactly which actions should be logged, what data each log entry must capture.
+
+---
+
 ## Summary of Blocking Dependencies
 
-| Module                              | Status                      | Needs from Product              | Needs from Design                                  |
-| ----------------------------------- | --------------------------- | ------------------------------- | -------------------------------------------------- |
-| Super Admin — Company Management    | Placeholder page            | CRUD scope, approval workflows  | List view, detail screen, edit form, status flows  |
-| Payment — Stripe Integration        | UI built, no backend wiring | Payment method/flow decisions   | Checkout flow, failure/retry screens               |
-| Payment — Withdrawals               | Not started                 | Confirm if needed + approval flow | Request form, status tracker, approval queue       |
-| Payment — Manual Adjustments        | Not started                 | Confirm if needed + audit rules | Adjustment form (super admin)                      |
-| Super Admin — Tariff Management     | Placeholder page            | Full spec (depends on Offers)   | CRUD screens, assignment UI                        |
-| Schedule — Admin Oversight          | Not started                 | Scope of super admin access     | Cross-company overview, override UI                |
-| Content Reporting                   | Not started                 | Separate module vs. tickets     | Report queue or ticket integration screens         |
-| Offer Module                        | Not started                 | Full spec (types, targeting)    | CRUD screens, filter builder, company-facing cards |
+| Module                           | Status                      | Needs from Product                | Needs from Design                                  |
+| -------------------------------- | --------------------------- | --------------------------------- | -------------------------------------------------- |
+| Super Admin — Company Management | Placeholder page            | CRUD scope, approval workflows    | List view, detail screen, edit form, status flows  |
+| Payment — Stripe Integration     | UI built, no backend wiring | Payment method/flow decisions     | Checkout flow, failure/retry screens               |
+| Payment — Withdrawals            | Not started                 | Confirm if needed + approval flow | Request form, status tracker, approval queue       |
+| Payment — Manual Adjustments     | Not started                 | Confirm if needed + audit rules   | Adjustment form (super admin)                      |
+| Super Admin — Tariff Management  | Placeholder page            | Full spec (depends on Offers)     | CRUD screens, assignment UI                        |
+| Schedule — Admin Oversight       | Not started                 | Scope of super admin access       | Cross-company overview, override UI                |
+| Content Reporting                | Not started                 | Separate module vs. tickets       | Report queue or ticket integration screens         |
+| Offer Module                     | Not started                 | Full spec (types, targeting)      | CRUD screens, filter builder, company-facing cards |
+| Logging System                   | Blocked                     | Full spec needed per module       |
 
 ---
 
 We'd like to schedule a meeting or async review to go through these items. Product decisions will determine architecture and implementation order. Design deliverables will unblock frontend development. Both are needed before the next development phase can proceed.
 
 **Suggested next steps:**
+
 1. Product team reviews and makes decisions on each section above
 2. Design team receives confirmed specs and begins wireframes/mockups
 3. Development team reviews designs and begins implementation
