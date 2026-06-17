@@ -166,6 +166,43 @@ We need the product team to define, for each module, exactly which actions shoul
 
 ---
 
+## 7. Partner Display Overview — Utilization Field
+
+**What exists today:** The partner display overview section includes a **utilization field** rendered as a bar graph, alongside other metrics such as visitor count. The semantics of this field and the value ranges represented by each bar have not been defined.
+
+**What we need clarified:**
+
+- **Meaning of the utilization field:**
+  - Does the utilization field represent the **usage rate of the display**?
+  - If so, does it indicate how many people have **booked a commercial** on the display at a given time, or is the value **cumulative across all time**?
+- **Bar ranges in the graph:**
+  - What is the value range represented by each bar in the utilization graph?
+  - For reference, the visitor count field defines its bars as follows: the first bar represents **1–99 people**, the second bar represents **100–499 people**, and so on. We need an equivalent range definition for utilization.
+
+---
+
+## 8. Display Rating — Submission Surface
+
+**What exists today:** There is no defined location in the product where users can rate displays. The data model and any aggregation rules for ratings are also undefined.
+
+**What we need clarified:**
+
+- Where in the product should users be able to rate a display? (e.g., from the display detail screen, after a booking completes, from the booking history, or elsewhere)
+- How should the aggregated rating be displayed on the display listing and detail pages?
+
+---
+
+## 9. Display Pricing & Owner Negotiation
+
+**What exists today:** When a company wants to schedule a playlist or commercial on a display owned by another partner, there is **no design or workflow** for proposing a price or negotiating the price with the display owner. The scheduling flow currently assumes the booking proceeds without any pricing exchange between the two parties.
+
+**What we need clarified:**
+
+- Is negotiation a back-and-forth flow (offer → counter-offer → accept/reject), or a single offer that the owner accepts or rejects?
+- What are the timeout / expiration rules for an unanswered offer?
+
+---
+
 ## Summary of Blocking Dependencies
 
 | Module                           | Status                      | Needs from Product                | Needs from Design                                  |
@@ -178,7 +215,10 @@ We need the product team to define, for each module, exactly which actions shoul
 | Schedule — Admin Oversight       | Not started                 | Scope of super admin access       | Cross-company overview, override UI                |
 | Content Reporting                | Not started                 | Separate module vs. tickets       | Report queue or ticket integration screens         |
 | Offer Module                     | Not started                 | Full spec (types, targeting)      | CRUD screens, filter builder, company-facing cards |
-| Logging System                   | Blocked                     | Full spec needed per module       |
+| Logging System                   | Blocked                     | Full spec needed per module       |                                                    |
+| Partner Display — Utilization    | Implemented, semantics TBD  | Field meaning + bar range spec    | Labelled graph, legend, empty state                |
+| Display Rating                   | Not started                 | Submission surface + rating model | Submission UI, aggregated display, moderation flow |
+| Display Pricing & Negotiation    | Not started                 | Pricing model + negotiation rules | Proposal form, review screen, thread, statuses     |
 
 ---
 
