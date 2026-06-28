@@ -203,6 +203,30 @@ We need the product team to define, for each module, exactly which actions shoul
 
 ---
 
+## 10. Marketplace Booking Offers — Payment Architecture Spec vs. Designs
+
+**What exists today:** The Payment Architecture Documentation (V2.1) specifies a detailed **negotiation-based booking offer system** for the marketplace (sections 6.0.1–6.0.5). Alongside direct booking at the listed price, a buyer can submit a custom **offer** on a timeslot, and the display owner can **accept, reject, ignore, or counter** it. The doc defines a full offer lifecycle (`pending`, `accepted`, `rejected`, `countered`, `expired`, `canceled`), offer rules (credits reserved only on acceptance, automatic expiry, offers capped at wallet balance, marketplace fee applied after acceptance), an optional counter-offer exchange, and booking finalization. **However, the shared Figma designs — "Checkout-Flow-Booking" and "Schedule" — cover only direct booking at the listed price and contain nothing for the offer functionality.** No screens exist for making, tracking, responding to, or countering an offer, so this part of the payment architecture cannot be built.
+
+**What we need clarified:**
+
+- **Scope for v1:** The doc marks counter offers as "optional" and several offer rules as "recommended." Are counter offers in scope for the first release, and which rules are final (auto-expiry window, credit reservation on acceptance, balance cap)?
+- **Entry point:** Should "make an offer" live inside the existing booking flow (as an alternative to "book at listed price"), or as a separate negotiation surface?
+- **Seller inbox:** Where do incoming offers appear for the display owner — the notification center, a dedicated offers inbox, or within display/schedule management?
+- **Notifications:** How are offer state changes (new offer, counter, accepted, rejected, expired) communicated to each party — in-app banners, notification center entries, or both?
+- **Expiry & reservation UX:** How should reserved credits and pending-offer expiry be surfaced to the buyer so they understand held balance and time remaining?
+
+**Design deliverables needed:**
+
+- Design covering the full booking offer flow, since the shared "Checkout-Flow-Booking" and "Schedule" designs include nothing for it. Specifically:
+- Buyer "make an offer" entry point and form (offer amount vs. listed price, fee preview)
+- Buyer offer status tracking (pending / countered / accepted / rejected / expired) with the respond-to-counter flow
+- Seller incoming-offers inbox/queue with accept / reject / ignore / counter actions
+- Seller counter-offer form
+- Offer detail view showing lifecycle state, reserved credits, and expiry
+- Offer state-change notification designs (new offer, counter, accepted, rejected, expired)
+
+---
+
 ## Summary of Blocking Dependencies
 
 | Module                           | Status                      | Needs from Product                | Needs from Design                                  |
@@ -219,6 +243,7 @@ We need the product team to define, for each module, exactly which actions shoul
 | Partner Display — Utilization    | Implemented, semantics TBD  | Field meaning + bar range spec    | Labelled graph, legend, empty state                |
 | Display Rating                   | Not started                 | Submission surface + rating model | Submission UI, aggregated display, moderation flow |
 | Display Pricing & Negotiation    | Not started                 | Pricing model + negotiation rules | Proposal form, review screen, thread, statuses     |
+| Marketplace — Booking Offers     | Spec'd, no design           | Offer rules + counter-offer scope | Buyer offer + seller inbox, counter form           |
 
 ---
 
